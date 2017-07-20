@@ -1,0 +1,21 @@
+{
+  "name": "eiriksm/git-log-format",
+  "description": "Format changelog-like git logs",
+  "require-dev": {
+    "phpunit/phpunit": "^5.7",
+    "satooshi/php-coveralls": "^1.0"
+  },
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {"eiriksm\\GitLogFormat\\": "src"}
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "eiriksm\\GitLogFormatTest\\": "test"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
+}
