@@ -2,7 +2,7 @@
 
 namespace eiriksm\GitLogFormat;
 
-class ChangelogLine {
+class ChangeLogLine {
   private $commit;
   private $commitMessage;
 
