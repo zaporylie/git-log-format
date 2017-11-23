@@ -1,5 +1,5 @@
 {
-  "name": "eiriksm/git-log-format",
+  "name": "violinist-dev/git-log-format",
   "description": "Format changelog-like git logs",
   "require-dev": {
     "phpunit/phpunit": "^5.7",
