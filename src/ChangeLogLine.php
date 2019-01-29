@@ -1,27 +1,31 @@
 <?php
 
-namespace eiriksm\GitLogFormat;
+namespace Violinist\GitLogFormat;
 
-class ChangeLogLine {
-  private $commit;
-  private $commitMessage;
+class ChangeLogLine
+{
+    private $commit;
+    private $commitMessage;
 
-  public function __construct($commit, $commit_mesage) {
-    $this->commit = $commit;
-    $this->commitMessage = $commit_mesage;
-  }
+    public function __construct($commit, $commit_mesage)
+    {
+        $this->commit = $commit;
+        $this->commitMessage = $commit_mesage;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getCommit() {
-    return $this->commit;
-  }
+    /**
+     * @return mixed
+     */
+    public function getCommit()
+    {
+        return $this->commit;
+    }
 
-  /**
-   * @return mixed
-   */
-  public function getCommitMessage() {
-    return $this->commitMessage;
-  }
+    /**
+     * @return mixed
+     */
+    public function getCommitMessage()
+    {
+        return $this->commitMessage;
+    }
 }
