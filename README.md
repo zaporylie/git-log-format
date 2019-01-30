@@ -36,5 +36,14 @@ cdcdcdc Release features and probably introduce bugs
 Then, pass the output to this package:
 
 ```php
-$data = 
+$data = \Violinist\GitLogFormat\ChangeLogData::createFromString('fefefef Fix bugs and add tests
+cdcdcdc Release features and probably introduce bugs');
+// Now add some info about what the source of the log is. Like so:
+$data->setGitSource('https://github.com/myname/mypackage');
+// Then get convenient output back, with links to the actual commits:
+print $data->getAsMarkdown();
+// Prints:
+// - [fefefef](https://github.com/myname/mypackage/commit/fefefef) Fix bugs and add tests
+// - [cdcdcdc](https://github.com/myname/mypackage/commit/cdcdcdc) Release features and probably introduce bugs
+
 ```
