@@ -81,20 +81,39 @@ class ChangeLogData
     {
         $output = '';
         foreach ($this->lines as $line) {
-            $force_no_link = false;
-            if ($this->gitSource) {
-                try {
-                    $url = $this->getCommitUrl($this->getGitSource(), $line->getCommit());
-                    $output .= sprintf("- [%s](%s) %s\n", $line->getCommit(), $url, $line->getCommitMessage());
-                } catch (\Exception $e) {
-                    $force_no_link = true;
-                }
-            }
-            if (!$this->gitSource || $force_no_link) {
-                $output .= sprintf("- %s %s\n", $line->getCommit(), $line->getCommitMessage());
+            $data = $this->parseSingleLine($line);
+            if (!empty($data['url'])) {
+                $output .= sprintf("- [%s](%s) %s\n", $data['hash'], $data['url'], $data['message']);
+            } else {
+                $output .= sprintf("- %s %s\n", $data['hash'], $data['message']);
             }
         }
         return $output;
+    }
+
+    protected function parseSingleLine(ChangeLogLine $line)
+    {
+        $data = [
+            'hash' => $line->getCommit(),
+            'message' => $line->getCommitMessage(),
+        ];
+        if ($this->gitSource) {
+            try {
+                $url = $this->getCommitUrl($this->getGitSource(), $line->getCommit());
+                $data['link'] = $url;
+            } catch (\Exception $e) {
+            }
+        }
+        return $data;
+    }
+
+    public function getAsJson()
+    {
+        $return_data = [];
+        foreach ($this->lines as $line) {
+            $return_data[] = $this->parseSingleLine($line);
+        }
+        return json_encode($return_data);
     }
 
 
