@@ -63,4 +63,12 @@ class ChangelogTest extends TestCase
         $this->assertEquals('- aba test test
 ', $data->getAsMarkdown());
     }
+
+    public function testGetAsJson()
+    {
+        $data = ChangeLogData::createFromString("ababab change 1\nfefefe change 2");
+        $data->setGitSource('https://github.com/violinist-dev/git-log-format');
+        $json = $data->getAsJson();
+        $this->assertEquals('[{"hash":"ababab","message":"change 1","link":"https:\/\/github.com\/violinist-dev\/git-log-format\/commit\/ababab"},{"hash":"fefefe","message":"change 2","link":"https:\/\/github.com\/violinist-dev\/git-log-format\/commit\/fefefe"}]', $json);
+    }
 }
