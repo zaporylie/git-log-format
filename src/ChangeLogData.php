@@ -38,6 +38,7 @@ class ChangeLogData
         $suported_prefixes = [
             'https://github.com/',
             'https://git.drupal.org',
+            'https://git.drupalcode.org'
         ];
         foreach ($suported_prefixes as $prefix) {
             if (strpos($git, $prefix) === 0) {
@@ -131,9 +132,10 @@ class ChangeLogData
             case 'github.com':
                 return sprintf('%s/commit/%s', $url, $commit);
 
+            case 'git.drupalcode.org':
             case 'git.drupal.org':
                 $project_name = str_replace('/project/', '', $url_parsed['path']);
-                return sprintf('http://cgit.drupalcode.org/%s/commit/?id=%s', $project_name, $commit);
+                return sprintf('https://git.drupalcode.org/project/%s/commit/%s', $project_name, $commit);
 
             default:
                 throw new \Exception('Git URL host not supported.');

@@ -33,8 +33,18 @@ class ChangelogTest extends TestCase
         $data = ChangeLogData::createFromString("ababab change 1\nfefefe change 2");
         $data->setGitSource('https://git.drupal.org/project/violinist_projects');
         $markdown = $data->getAsMarkdown();
-        $this->assertEquals('- [ababab](http://cgit.drupalcode.org/violinist_projects/commit/?id=ababab) change 1
-- [fefefe](http://cgit.drupalcode.org/violinist_projects/commit/?id=fefefe) change 2
+        $this->assertEquals('- [ababab](https://git.drupalcode.org/project/violinist_projects/commit/ababab) change 1
+- [fefefe](https://git.drupalcode.org/project/violinist_projects/commit/fefefe) change 2
+', $markdown);
+    }
+
+    public function testWithNewDrupalLinks()
+    {
+        $data = ChangeLogData::createFromString("ababab change 1\nfefefe change 2");
+        $data->setGitSource('https://git.drupalcode.org/project/violinist_projects');
+        $markdown = $data->getAsMarkdown();
+        $this->assertEquals('- [ababab](https://git.drupalcode.org/project/violinist_projects/commit/ababab) change 1
+- [fefefe](https://git.drupalcode.org/project/violinist_projects/commit/fefefe) change 2
 ', $markdown);
     }
 
